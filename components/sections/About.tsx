@@ -114,7 +114,7 @@ export default function About() {
             <ArtShape variant="asterisk" spin speed={0.08} className="-left-20 -top-10 -z-10 w-64 opacity-60" />
             <div aria-hidden className="absolute -inset-6 -z-10 rounded-full bg-accent opacity-40 blur-2xl" />
             <div className="relative aspect-[3/4] -rotate-3 overflow-hidden rounded-t-full rounded-b-[2rem] border border-line bg-gradient-to-b from-mist to-surface transition-transform duration-500 group-hover:-translate-y-2">
-              {!hide.a && <Image src="/images/salsa.jpg" alt="Portrait of Latifa Salsabila" fill sizes="(min-width:768px) 40vw, 75vw" className="object-cover" onError={() => setHide((h) => ({ ...h, a: true }))} />}
+              {!hide.a && <Image src="/images/salsa.png" alt="Portrait of Latifa Salsabila" fill sizes="(min-width:768px) 40vw, 75vw" className="object-cover" onError={() => setHide((h) => ({ ...h, a: true }))} />}
               {!hide.b && <Image src="/images/salsa-alt.jpg" alt="" fill sizes="(min-width:768px) 40vw, 75vw" className="object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100" onError={() => setHide((h) => ({ ...h, b: true }))} />}
             </div>
             <span className="absolute -right-2 bottom-10 rotate-6 rounded-full bg-fg px-3 py-1.5 font-mono text-[11px] uppercase text-bg">THAT&apos;S ME ☕</span>
