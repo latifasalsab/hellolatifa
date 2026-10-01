@@ -6,7 +6,7 @@ import Reveal from '@/components/ui/Reveal'
 import Asterisk from '@/components/ui/Asterisk'
 import ArtShape from '@/components/ui/ArtShape'
 import SectionLabel from '@/components/ui/SectionLabel'
-import { skills, stats } from '@/data/site'
+import { toolChips, stats } from '@/data/site'
 import { useGo } from '@/hooks/useGo'
 import { useIsTouch } from '@/hooks/useIsTouch'
 import { usePhysicsPills } from '@/hooks/usePhysicsPills'
@@ -32,26 +32,55 @@ function Count({ v, suffix, d }: { v: number; suffix: string; d: number }) {
   return <span ref={ref}>{n.toFixed(d)}{suffix}</span>
 }
 
-/* Tile A: tools as gloss stickers that fall into the tile */
+/* Tile A: tools. 5 main + 5 other chips, upright (rotation locked), statement fills the top */
+const STATEMENT = 'Mostly Vue, React & Laravel, with a soft spot for polished UI.'.split(' ')
+const EMPH_W = new Set(['Vue,', 'React', '&', 'Laravel,'])
+
+function Statement() {
+  const rm = useReducedMotion()
+  return (
+    <p className="mt-5 max-w-[34ch] font-display font-semibold leading-[1.12] tracking-[-0.02em]" style={{ fontSize: 'clamp(26px, 3vw, 44px)' }}>
+      {STATEMENT.map((w, i) => (
+        <span key={i} className="mr-[.25em] inline-block overflow-hidden pb-[.2em] align-bottom">
+          <motion.span className={`inline-block ${EMPH_W.has(w) ? 'underline decoration-accent decoration-4 underline-offset-[.14em]' : ''}`}
+            initial={{ y: rm ? 0 : '115%' }} whileInView={{ y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: i * 0.04 }}>{w}</motion.span>
+        </span>
+      ))}
+    </p>
+  )
+}
+
 function Stickers() {
   const rm = useReducedMotion(), touch = useIsTouch()
   const tile = useRef<HTMLDivElement>(null), world = useRef<HTMLDivElement>(null)
   const inView = useInView(tile, { once: true, margin: '-15%' })
-  usePhysicsPills({ root: world, enabled: !rm, start: inView, drag: !touch, stagger: 90, rebuildKey: 'stickers', getFloor: () => world.current?.clientHeight ?? 0 })
-  const all = skills.flatMap((g, gi) => g.items.map((t) => ({ t, gi })))
+  const [fonts, setFonts] = useState(false)
+  const [w, setW] = useState(0)
+  useEffect(() => { document.fonts.ready.then(() => setFonts(true)) }, [])
+  useEffect(() => { // debounced rebuild when the tile width changes
+    const el = tile.current
+    if (!el) return
+    let t: number
+    const ro = new ResizeObserver(() => { clearTimeout(t); t = window.setTimeout(() => setW(Math.round(el.clientWidth / 8)), 200) })
+    ro.observe(el)
+    return () => { ro.disconnect(); clearTimeout(t) }
+  }, [])
+  usePhysicsPills({ root: world, enabled: !rm, start: inView && fonts, drag: !touch, stagger: 90, lockRotation: true, rebuildKey: `chips-${w}`, getFloor: () => world.current?.clientHeight ?? 0 })
+  const ordered = [...toolChips].sort((a, b) => Number(b.featured) - Number(a.featured))
+  const chip = (c: { t: string; featured: boolean }) =>
+    `pill-gloss ${c.featured ? 'pill-main h-[52px] px-6 text-base' : 'pill-primary h-[42px] px-5 text-sm'} inline-flex items-center whitespace-nowrap font-mono uppercase`
   return (
-    <div ref={tile} className="relative flex h-full min-h-[28rem] flex-col overflow-hidden rounded-[28px] border border-line bg-surface p-6">
+    <div ref={tile} className="relative flex h-full min-h-[36rem] flex-col overflow-hidden rounded-[28px] border border-line bg-surface p-6 md:p-8">
       <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest"><Asterisk size={12} />Tools I reach for</p>
-      <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 font-mono text-[10px] uppercase text-muted">
-        {skills.map((g, gi) => <span key={g.label} className="flex items-center gap-1.5"><span className={`pill-gloss ${VAR[gi]} inline-block h-2.5 w-5`} />{g.label}</span>)}
-      </div>
-      <ul className="sr-only">{all.map((c) => <li key={c.t}>{c.t}</li>)}</ul>
+      <Statement />
+      <ul className="sr-only">{toolChips.map((c) => <li key={c.t}>{c.t}</li>)}</ul>
       {rm ? (
-        <div className="mt-6 flex flex-wrap gap-2">{all.map((c) => <span key={c.t} className={`pill-gloss ${VAR[c.gi]} px-4 py-2 font-mono text-xs uppercase`}>{c.t}</span>)}</div>
+        <div className="mt-auto flex flex-wrap gap-2 pt-8">{ordered.map((c) => <span key={c.t} className={chip(c)}>{c.t}</span>)}</div>
       ) : (
-        <div ref={world} aria-hidden className="pointer-events-none absolute inset-0 overflow-clip" style={{ touchAction: 'pan-y' }}>
-          {all.map((c) => (
-            <span key={c.t} data-pill className={`pill-gloss ${VAR[c.gi]} pointer-events-auto absolute left-0 top-0 cursor-grab whitespace-nowrap px-4 py-2 font-mono text-xs uppercase opacity-0 will-change-transform active:cursor-grabbing`}>{c.t}</span>
+        // physics area = bottom ~48% of the tile; chips spawn above it and are clipped until they fall in
+        <div ref={world} aria-hidden className="pointer-events-none absolute inset-x-4 bottom-0 h-[48%] overflow-clip" style={{ touchAction: 'pan-y' }}>
+          {ordered.map((c) => (
+            <span key={c.t} data-pill className={`${chip(c)} pointer-events-auto absolute left-0 top-0 cursor-grab opacity-0 will-change-transform active:cursor-grabbing`}>{c.t}</span>
           ))}
         </div>
       )}
@@ -79,25 +108,18 @@ function Ring({ v, suffix, d, label, frac }: { v: number; suffix: string; d: num
   )
 }
 
-/* Tile C: flip card */
-function Flip() {
-  const rm = useReducedMotion(), touch = useIsTouch()
-  const [f, setF] = useState(false)
-  const face = 'absolute inset-0 flex flex-col justify-between rounded-[28px] border border-line p-6 [backface-visibility:hidden]'
+/* Tile C: Beyond code (basic version: plain sky card, 4 readable lines) */
+const BEYOND = ['MC & public speaking', 'Content design', 'Event organizing', 'Student org secretary']
+
+function BeyondCode() {
   return (
-    <button aria-pressed={f} className="block h-full min-h-[13rem] w-full text-left [perspective:1000px]"
-      onMouseEnter={() => !touch && setF(true)} onMouseLeave={() => !touch && setF(false)}
-      onClick={(e) => { if (touch || e.detail === 0) setF((v) => !v) }}>
-      <motion.span className="relative block h-full min-h-[13rem] w-full [transform-style:preserve-3d]" animate={{ rotateY: rm ? 0 : f ? 180 : 0 }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
-        <span className={`${face} bg-surface`} style={rm ? { opacity: f ? 0 : 1, transition: 'opacity .3s' } : undefined}>
-          <span className="font-display text-4xl font-semibold tracking-tight md:text-5xl">Beyond code <Asterisk size={28} className="inline-block align-middle" /></span>
-          <span className="font-mono text-[10px] uppercase text-muted">hover / tap to flip</span>
-        </span>
-        <span className={`${face} bg-accent text-espresso [transform:rotateY(180deg)]`} style={rm ? { opacity: f ? 1 : 0, transform: 'none', transition: 'opacity .3s' } : undefined}>
-          {['MC & public speaking', 'Content design', 'Event organizing', 'Student org secretary'].map((t) => <span key={t} className="block font-display text-lg font-medium">{t}</span>)}
-        </span>
-      </motion.span>
-    </button>
+    <section aria-labelledby="beyond-h" className="flex h-full min-h-[13rem] flex-col justify-between gap-6 rounded-[28px] bg-accent p-6 text-espresso md:p-8">
+      <div>
+        <h3 id="beyond-h" className="font-display text-4xl font-semibold tracking-tight md:text-5xl">Beyond code <Asterisk size={28} className="inline-block align-middle" /></h3>
+        <p className="mt-2 text-sm text-espresso/75">Same attention to detail, different stage.</p>
+      </div>
+      <ul className="space-y-1">{BEYOND.map((t) => <li key={t} className="font-display text-lg font-medium md:text-xl">{t}</li>)}</ul>
+    </section>
   )
 }
 
@@ -142,7 +164,7 @@ export default function About() {
             </div>
           </div>
         </Reveal>
-        <Reveal className="md:col-span-5" delay={0.16}><Flip /></Reveal>
+        <Reveal className="md:col-span-5" delay={0.16}><BeyondCode /></Reveal>
       </div>
     </section>
   )
