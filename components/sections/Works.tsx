@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { motion, useMotionValue, useSpring } from 'motion/react'
+import { motion, useMotionValue, useReducedMotion, useSpring } from 'motion/react'
 import Reveal from '@/components/ui/Reveal'
 import Pill from '@/components/ui/Pill'
 import { projects, site, type Project } from '@/data/site'
@@ -50,6 +50,34 @@ function Card({ p, featured, i }: { p: Project; featured: boolean; i: number }) 
   )
 }
 
+function WorksTitle() {
+  const rm = useReducedMotion()
+  const ease = [0.16, 1, 0.3, 1] as const
+  return (
+    <div className="mb-14">
+      <SectionLabel>Works</SectionLabel>
+      <h2 id="works-h" className="flex flex-wrap items-center gap-x-[.22em] gap-y-1 font-display font-semibold leading-[1.1] tracking-[-0.03em]" style={{ fontSize: 'clamp(48px, 9vw, 140px)' }}>
+        <span className="inline-block overflow-hidden pb-[.1em]">
+          <motion.span className="inline-block" initial={{ y: rm ? 0 : '110%' }} whileInView={{ y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, ease }}>Selected</motion.span>
+        </span>
+        <Asterisk size="0.62em" gradient spin />
+        <span className="basis-full sm:hidden" aria-hidden />
+        <span className="relative inline-block">
+          <motion.span className="pill-gloss pill-primary inline-block px-[.35em] pb-[.1em]"
+            initial={{ scale: rm ? 1 : 0.6, opacity: 0, rotate: -8 }} whileInView={{ scale: 1, opacity: 1, rotate: -2 }} viewport={{ once: true }}
+            transition={{ type: 'spring', stiffness: 220, damping: 12, delay: 0.25 }}
+            whileHover={rm ? undefined : { rotate: [-2, 2, -4, -2], transition: { duration: 0.6 } }}>Works</motion.span>
+          <span className="pill-gloss pill-dark absolute -right-3 -top-2 px-2.5 py-1 font-mono text-xs tracking-normal md:-top-4 md:text-sm">({String(projects.length).padStart(2, '0')})</span>
+        </span>
+      </h2>
+      <div className="mt-6 flex items-end justify-between gap-6">
+        <p className="max-w-xs text-muted">A few things I&apos;ve shaped, shipped, and sweated over.</p>
+        <span className="font-mono text-xs uppercase text-muted md:text-sm">2022 — 2026</span>
+      </div>
+    </div>
+  )
+}
+
 function Heat() {
   const [w, setW] = useState<number[][] | null>(null)
   useEffect(() => {
@@ -90,10 +118,7 @@ function Archive() {
 export default function Works() {
   return (
     <section id="works" aria-labelledby="works-h" className="mx-auto max-w-[1280px] px-5 py-28 md:px-10 md:py-40">
-      <div className="mb-14 flex items-end justify-between">
-        <div><SectionLabel>Works</SectionLabel><h2 id="works-h" className="font-display text-5xl font-semibold tracking-tight md:text-8xl">Selected works</h2></div>
-        <span className="font-mono text-sm text-muted">({String(projects.length).padStart(2, '0')})</span>
-      </div>
+      <WorksTitle />
       <div className="grid gap-x-8 gap-y-14 md:grid-cols-2">
         {projects.map((p, i) => <Card key={p.slug} p={p} i={i} featured={i === 0} />)}
         <Archive />
