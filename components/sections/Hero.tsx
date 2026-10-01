@@ -142,14 +142,14 @@ export default function Hero() {
       </h1>
 
       {/* the only marquee: bottom edge of the hero */}
-      <div className="relative z-10 shrink-0">
+      {/* <div className="relative z-10 shrink-0">
         <motion.div style={{ opacity: cue }} className="pointer-events-none absolute inset-x-0 top-0 z-30 flex -translate-y-1/2 justify-center">
           <span className="pill-gloss pill-primary flex items-center gap-2 px-4 py-1.5 font-mono text-xs uppercase">
             Scroll <motion.span animate={rm ? undefined : { y: [0, 4, 0] }} transition={{ duration: 1.4, repeat: Infinity }}>↓</motion.span>
           </span>
         </motion.div>
         <Marquee items={marquee} />
-      </div>
+      </div> */}
     </section>
   )
 }
