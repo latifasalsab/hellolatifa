@@ -14,7 +14,7 @@ const body = Poppins({ subsets: ['latin'], weight: ['400', '500', '600'], variab
 const mono = Space_Mono({ subsets: ['latin'], weight: ['400', '700'], variable: '--f-mono', display: 'swap' })
 
 export const metadata: Metadata = {
-  title: `${site.name} — ${site.title}`,
+  title: `${site.name} ${site.title}`,
   description: site.description,
   openGraph: { title: `${site.name} — ${site.title}`, description: site.description, type: 'website' },
   twitter: { card: 'summary_large_image', title: site.name, description: site.description },

@@ -3,9 +3,9 @@ export type Exp = { date: string; title: string; text: string; chips: string[]; 
 export type Project = { slug: string; title: string; year: string; description: string; stack: string[]; link: string | null }
 
 export const site = {
-  name: 'Latifa Salsabila',
+  name: 'hello latifa',
   short: 'Salsa',
-  title: 'Frontend Developer',
+  title: '',
   location: 'Semarang, ID',
   timezone: 'Asia/Jakarta',
   email: 'hello@TODO.com', // TODO
