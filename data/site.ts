@@ -90,3 +90,12 @@ export const heroBodies: HeroBody[] = [
   // { t: 'LS©', v: 'neutral', desktopOnly: true, rest: { x: 90, row: 1, r: -6 } },
   // { t: 'SALSA', v: 'dark', vertical: true, desktopOnly: true, rest: { x: 6, row: 0, r: 8 } },
 ]
+
+export const PRELOADER_MIN_MS = 1800 // minimum visible time, always enforced
+export const PRELOADER_ONCE_PER_SESSION = true // ?preloader=1 forces it; dev shows it on every reload
+
+// Tools tile (About): flat list, `featured` = the 5 main tools (bigger, darker chips)
+export const toolChips: { t: string; featured: boolean }[] = [
+  { t: 'Vue.js', featured: true }, { t: 'React', featured: true }, { t: 'Next.js', featured: true }, { t: 'Laravel', featured: true }, { t: 'Tailwind', featured: true },
+  { t: 'Node.js', featured: false }, { t: 'Flutter', featured: false }, { t: 'Firebase', featured: false }, { t: 'Figma', featured: false }, { t: 'ML & FastAPI', featured: false },
+]

@@ -12,6 +12,7 @@ type Opts = {
   gravity?: number
   rebuildKey?: string // change => world is rebuilt (resize / floor moved)
   debug?: boolean
+  lockRotation?: boolean // keep a small fixed tilt, never tumble (default false)
 }
 
 export function usePhysicsPills(o: Opts) {
@@ -87,7 +88,10 @@ export function usePhysicsPills(o: Opts) {
       const slots = items.map((_, i) => W * (0.08 + (0.84 * (i + 0.5)) / items.length)).sort(() => Math.random() - 0.5)
       items.forEach((it, i) => timers.push(window.setTimeout(() => {
         Body.setPosition(it.b, { x: slots[i] + rand(-W * 0.02, W * 0.02), y: rand(-200, -60) })
-        Body.setAngle(it.b, rand(-0.44, 0.44)); Body.setAngularVelocity(it.b, rand(-0.08, 0.08))
+        if (ref.current.lockRotation) {
+          Body.setAngle(it.b, (Math.random() < 0.5 ? -1 : 1) * rand(0.17, 0.21)) // ±10–12°
+          Body.setInertia(it.b, Infinity); Body.setAngularVelocity(it.b, 0)
+        } else { Body.setAngle(it.b, rand(-0.44, 0.44)); Body.setAngularVelocity(it.b, rand(-0.08, 0.08)) }
         Composite.add(engine.world, it.b); it.el.style.opacity = '1'; spawned++; kick()
       }, i * (ref.current.stagger ?? 110))))
       if (ref.current.drag) {
