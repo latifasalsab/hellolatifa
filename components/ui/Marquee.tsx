@@ -20,7 +20,7 @@ export default function Marquee({ items }: { items: string[] }) {
   const rep = (k: string) => (
     <div key={k} className="flex shrink-0 items-center">
       {items.map((t) => (
-        <span key={t} className="flex shrink-0 items-center gap-12 whitespace-nowrap pr-12">{t}<Asterisk size="0.8em" gradient /></span>
+        <span key={t} className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8">{t}<Asterisk size="0.8em" gradient /></span>
       ))}
     </div>
   )
@@ -30,7 +30,7 @@ export default function Marquee({ items }: { items: string[] }) {
     </div>
   )
   return (
-    <div aria-hidden className="marquee flex w-full items-center overflow-hidden bg-fg font-mono uppercase text-bg" style={{ height: 'clamp(64px,7vw,104px)', fontSize: 'clamp(18px,2.2vw,32px)' }}>
+    <div aria-hidden className="marquee flex w-full items-center overflow-hidden bg-fg font-mono uppercase text-bg" style={{ height: 'clamp(42px,4.4vw,66px)', fontSize: 'clamp(18px,2.2vw,32px)' }}>
       <div className="marquee-track flex w-max items-center">{group(0)}{group(1)}</div>
     </div>
   )

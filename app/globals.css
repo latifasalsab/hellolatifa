@@ -64,10 +64,10 @@ html.lenis, html.lenis body { height: auto; }
 }
 
 /* hero pill sizing (scales with viewport) */
-.hp { --ph: clamp(52px, 5.2vw, 84px); display: inline-flex; align-items: center; height: var(--ph); padding: 0 calc(var(--ph) * .9); font-size: clamp(16px, 1.9vw, 30px); }
+.hp { --ph: clamp(46px, 4.6vw, 72px); display: inline-flex; align-items: center; height: var(--ph); padding: 0 calc(var(--ph) * .75); font-size: clamp(14px, 1.75vw, 27px); }
 .hp-circle { width: calc(var(--ph) * 1.15); height: calc(var(--ph) * 1.15); padding: 0; justify-content: center; font-size: calc(var(--ph) * .45); }
-.hp-vert { width: var(--ph); height: calc(var(--ph) * 2.2); padding: 0; justify-content: center; writing-mode: vertical-rl; font-size: clamp(14px, 1.6vw, 26px); }
-@media (max-width: 639px) { .hp { --ph: 44px; font-size: 14px; } }
+.hp-vert { width: var(--ph); height: calc(var(--ph) * 2.2); padding: 0; justify-content: center; writing-mode: vertical-rl; font-size: clamp(14px, 1.5vw, 24px); }
+@media (max-width: 639px) { .hp { --ph: 42px; font-size: 13px; } }
 
 }
 

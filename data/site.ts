@@ -79,12 +79,13 @@ export const SHOW_FLOOR_LINE = true
 // row = how many pill-heights above the floor, r = rotation in deg.
 export type HeroBody = { t: string; v: 'neutral' | 'primary' | 'dark'; circle?: boolean; vertical?: boolean; desktopOnly?: boolean; rest: { x: number; row: number; r: number } }
 export const heroBodies: HeroBody[] = [
-  { t: 'FRONTEND DEVELOPER', v: 'primary', rest: { x: 28, row: 0, r: -4 } },
+  { t: 'WEB DEVELOPER', v: 'primary', rest: { x: 28, row: 0, r: -4 } },
   { t: 'SEMARANG, ID', v: 'neutral', rest: { x: 58, row: 0, r: 3 } },
   { t: 'UI/UX POLISH', v: 'neutral', rest: { x: 82, row: 0, r: -3 } },
-  { t: '↓', v: 'dark', circle: true, rest: { x: 44, row: 1, r: 0 } },
+  // { t: '↓', v: 'dark', circle: true, rest: { x: 44, row: 1, r: 0 } },
   { t: '✱', v: 'dark', circle: true, rest: { x: 70, row: 1, r: 0 } },
   { t: 'ML CURIOUS', v: 'primary', desktopOnly: true, rest: { x: 14, row: 1, r: 6 } },
-  { t: 'LS©', v: 'neutral', desktopOnly: true, rest: { x: 90, row: 1, r: -6 } },
-  { t: 'SALSA', v: 'dark', vertical: true, desktopOnly: true, rest: { x: 6, row: 0, r: 8 } },
+  { t: 'LATIFA', v: 'dark', desktopOnly: true, rest: { x: 36, row: 1, r: -5 } },
+  // { t: 'LS©', v: 'neutral', desktopOnly: true, rest: { x: 90, row: 1, r: -6 } },
+  // { t: 'SALSA', v: 'dark', vertical: true, desktopOnly: true, rest: { x: 6, row: 0, r: 8 } },
 ]
