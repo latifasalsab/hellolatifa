@@ -96,3 +96,20 @@ html.lenis, html.lenis body { height: auto; }
 @media (prefers-reduced-motion: reduce) {
   .marquee-track, .breathe, .pulse-dot, .ast-spin, .badge-rot { animation: none; }
 }
+
+/* ---- Round 3 ---- */
+:root { --nav-bottom: 88px; --footer-gap: 16px; --footer-mb: 16px; }
+
+/* preloader: page stays laid out (visibility, not display) so hero measurements still work */
+html[data-loading="true"] main, html[data-loading="true"] .loading-hide { visibility: hidden; opacity: 0; }
+html[data-loading="true"] header { visibility: hidden; }
+header > div:first-child { transition: opacity .4s ease, transform .4s ease; }
+html[data-loading="true"] header > div:first-child { opacity: 0; transform: translateY(-16px); }
+
+/* About cards: local tokens so text/pills stay readable in both themes */
+.card-sky { --fg: #1E140E; --muted: rgb(30 20 14 / .75); --line: rgb(30 20 14 / .18); --surface: #EDE6D8;
+  --ast-a: #FFFFFF; --ast-b: #EDE6D8; --ast-c: #C9DCE8; background: linear-gradient(135deg, #A9C6DA, #C9DCE8); color: #1E140E; }
+@layer components {
+  .pill-main { background: linear-gradient(135deg, #1E140E, #3C2A1E); color: #EDE6D8; }
+  [data-theme=dark] .pill-main { background: linear-gradient(135deg, #EDE6D8, #C9DCE8); color: #1E140E; }
+}

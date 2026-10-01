@@ -7,7 +7,7 @@ import Grain from '@/components/layout/Grain'
 import ScrollProgress from '@/components/layout/ScrollProgress'
 import Cursor from '@/components/layout/Cursor'
 import Preloader from '@/components/layout/Preloader'
-import { site } from '@/data/site'
+import { site, PRELOADER_ONCE_PER_SESSION } from '@/data/site'
 
 const display = Space_Grotesk({ subsets: ['latin'], weight: ['500', '600', '700'], variable: '--f-display', display: 'swap' })
 const body = Poppins({ subsets: ['latin'], weight: ['400', '500', '600'], variable: '--f-body', display: 'swap' })
@@ -28,16 +28,17 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${display.variable} ${body.variable} ${mono.variable}`}>
+    <html lang="en" suppressHydrationWarning data-loading="true" className={`${display.variable} ${body.variable} ${mono.variable}`}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `(function(){var d=document.documentElement;try{var f=/[?&]preloader=1/.test(location.search),dev=${process.env.NODE_ENV === 'development'},once=${PRELOADER_ONCE_PER_SESSION};if(!f&&!dev&&once&&sessionStorage.getItem('ls-pre')){d.removeAttribute('data-loading')}else{sessionStorage.removeItem('ls-pre')}}catch(e){d.removeAttribute('data-loading')}})()` }} />
+      </head>
       <body className="font-sans">
         <ThemeProvider>
           <SmoothScroll>
             <a href="#about" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-full focus:bg-accent focus:px-4 focus:py-2 focus:text-espresso">Skip to content</a>
             <Preloader />
-            <ScrollProgress />
+            <div className="loading-hide"><ScrollProgress /><Cursor /><Grain /></div>
             {children}
-            <Cursor />
-            <Grain />
           </SmoothScroll>
         </ThemeProvider>
       </body>
