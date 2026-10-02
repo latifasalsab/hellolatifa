@@ -25,7 +25,7 @@ function Card({ p, featured, i }: { p: Project; featured: boolean; i: number }) 
         onPointerLeave={() => { rx.set(0); ry.set(0) }}
         className={`relative overflow-hidden rounded-[28px] border border-line bg-gradient-to-br from-mist via-surface to-accent/40 ${featured ? 'aspect-[16/8]' : 'aspect-[16/10]'}`}>
         <span className="absolute inset-0 grid place-items-center p-6 text-center font-display text-3xl font-semibold text-espresso/50">{p.title}</span>
-        {img && <Image src={`/images/projects/${p.slug}.jpg`} alt={`${p.title} cover`} fill sizes="(min-width:768px) 50vw, 100vw" className="object-cover" onError={() => setImg(false)} />}
+        {img && <Image src={`/images/projects/${p.slug}.png`} alt={`${p.title} cover`} fill sizes="(min-width:768px) 50vw, 100vw" quality={90} className="object-cover" onError={() => setImg(false)} />}
         {!touch && (
           <div className="absolute inset-0 flex flex-col justify-end gap-3 bg-bg/85 p-6 opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
             {!p.link && <span className="w-fit rounded-full bg-accent px-3 py-1 font-mono text-[11px] uppercase text-espresso">Private</span>}

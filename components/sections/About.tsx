@@ -33,8 +33,8 @@ function Count({ v, suffix, d }: { v: number; suffix: string; d: number }) {
 }
 
 /* Tile A: tools. 5 main + 5 other chips, upright (rotation locked), statement fills the top */
-const STATEMENT = 'Mostly Vue, React & Laravel, with a soft spot for polished UI.'.split(' ')
-const EMPH_W = new Set(['Vue,', 'React', '&', 'Laravel,'])
+const STATEMENT = 'Mostly Laravel, Vue & Next.js, with a soft spot for polished UI.'.split(' ')
+const EMPH_W = new Set(['Laravel,', 'Vue', '&', 'Next.js,'])
 
 function Statement() {
   const rm = useReducedMotion()
@@ -109,7 +109,7 @@ function Ring({ v, suffix, d, label, frac }: { v: number; suffix: string; d: num
 }
 
 /* Tile C: Beyond code (basic version: plain sky card, 4 readable lines) */
-const BEYOND = ['MC & public speaking', 'Content design', 'Event organizing', 'Student org secretary']
+const BEYOND = ['MC & public speaking', 'Content & visual design', 'Event organizing', 'Student org secretary', 'Machine learning']
 
 function BeyondCode() {
   return (
@@ -136,8 +136,8 @@ export default function About() {
             <ArtShape variant="asterisk" spin speed={0.08} className="-left-20 -top-10 -z-10 w-64 opacity-60" />
             <div aria-hidden className="absolute -inset-6 -z-10 rounded-full bg-accent opacity-40 blur-2xl" />
             <div className="relative aspect-[3/4] -rotate-3 overflow-hidden rounded-t-full rounded-b-[2rem] border border-line bg-gradient-to-b from-mist to-surface transition-transform duration-500 group-hover:-translate-y-2">
-              {!hide.a && <Image src="/images/salsa.png" alt="Portrait of Latifa Salsabila" fill sizes="(min-width:768px) 40vw, 75vw" className="object-cover" onError={() => setHide((h) => ({ ...h, a: true }))} />}
-              {!hide.b && <Image src="/images/salsa-alt.jpg" alt="" fill sizes="(min-width:768px) 40vw, 75vw" className="object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100" onError={() => setHide((h) => ({ ...h, b: true }))} />}
+              {!hide.a && <Image src="/images/salsa.png" alt="Portrait of Latifa Salsabila" fill sizes="(min-width:768px) 40vw, 75vw" quality={90} className="object-cover" onError={() => setHide((h) => ({ ...h, a: true }))} />}
+              {!hide.b && <Image src="/images/salsa-alt.jpg" alt="" fill sizes="(min-width:768px) 40vw, 75vw" quality={90} className="object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100" onError={() => setHide((h) => ({ ...h, b: true }))} />}
             </div>
             <span className="absolute -right-2 bottom-10 rotate-6 rounded-full bg-fg px-3 py-1.5 font-mono text-[11px] uppercase text-bg">THAT&apos;S ME ☕</span>
           </div>
@@ -148,7 +148,7 @@ export default function About() {
             {HEAD.map((w, i) => <Word key={i} w={w} i={i} n={HEAD.length} p={p} />)}
           </h2>
           <Reveal className="mt-8 max-w-xl space-y-4 text-muted">
-            <p>I&apos;m a frontend developer and final-year Informatics student in Semarang. I turn designs into polished interfaces with Laravel Blade, Vue, React, and Next.js, and yes, I will absolutely notice a 2px misalignment. Right now I&apos;m shipping client work at ByDecodes while finishing my thesis on ML-powered GitHub analytics.</p>
+            <p>I&apos;m a full-stack web developer and Informatics graduate from Polines in Semarang. I build with Laravel Blade, Vue, Next.js, and Node.js, turn designs into polished interfaces, and yes, I will absolutely notice a 2px misalignment. Right now I&apos;m shipping client work at By Decodes Media, and after finishing my thesis on ML-powered GitHub analytics, I&apos;m growing into machine learning.</p>
             <p>Have an idea, a project, or just a good coffee recommendation? <a href="#talk" onClick={(e) => { e.preventDefault(); go('#talk') }} className="text-fg underline decoration-accent decoration-2 underline-offset-4">Let&apos;s talk.</a></p>
           </Reveal>
         </div>

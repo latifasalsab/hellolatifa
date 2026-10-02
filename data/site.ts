@@ -3,18 +3,18 @@ export type Exp = { date: string; title: string; text: string; chips: string[]; 
 export type Project = { slug: string; title: string; year: string; description: string; stack: string[]; link: string | null }
 
 export const site = {
-  name: 'hello latifa',
+  name: 'Salsa®',
   short: 'Salsa',
   title: '',
   location: 'Semarang, ID',
   timezone: 'Asia/Jakarta',
-  email: 'hello@TODO.com', // TODO
-  description: 'Frontend developer & final-year Informatics student in Semarang. I build calm, fast, detail-obsessed interfaces.',
+  email: 'latifasalsa.works@gmail.com',
+  description: 'Full-stack web developer from Semarang, Polines graduate (GPA 3.90). I build calm, fast, detail-obsessed interfaces, and I\'m now growing into machine learning.',
   socials: [
-    { label: 'Email', href: 'mailto:hello@TODO.com' }, // TODO
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/TODO' }, // TODO
-    { label: 'GitHub', href: 'https://github.com/TODO' }, // TODO
-    { label: 'Instagram', href: 'https://www.instagram.com/TODO' }, // TODO
+    { label: 'Email', href: 'mailto:latifasalsa.works@gmail.com' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/latifasalsab' },
+    { label: 'GitHub', href: 'https://github.com/latifasalsab' },
+    { label: 'Instagram', href: 'https://www.instagram.com/latifasalsab' },
   ] as Social[],
 }
 
@@ -38,9 +38,9 @@ export const heroPills = [
 ]
 
 export const stats = [
-  { value: 4, suffix: ' yrs', decimals: 0, label: 'building for the web' }, // TODO
-  { value: 3.91, suffix: '', decimals: 2, label: 'GPA' },
-  { value: 10, suffix: '+', decimals: 0, label: 'projects' }, // TODO
+  { value: 3, suffix: '+ yrs', decimals: 0, label: 'building for the web' },
+  { value: 3.9, suffix: '', decimals: 2, label: 'GPA' },
+  { value: 8, suffix: '', decimals: 0, label: 'featured projects' },
 ]
 
 export const aboutBlocks = [
@@ -55,21 +55,80 @@ export const skills = [
 ]
 
 export const experience: Exp[] = [
-  { date: 'Feb 2026 – Now', title: 'Frontend Developer — ByDecodes Media', text: 'Building the EduFarmers platform and contributing to Japfa Scholarship with Blade and Vue. Turning designs into reusable components and helping front and back end shake hands over the API.', chips: ['Laravel Blade', 'Vue.js', 'Tailwind'] },
-  { date: 'Aug – Dec 2025', title: 'Frontend Intern — ByDecodes Media', text: 'Built the Bodaq Hyundai branding site with animations and reusable layouts, plus an AI product website in Next.js focused on speed and a scalable component setup.', chips: ['Laravel Blade', 'JavaScript', 'Next.js'] },
+  { date: 'Feb 2026 – Now', title: 'Front-End Developer (Part-time) — By Decodes Media', text: 'Owning front-end delivery for the EduFarmers platform and building the interactive application flow for Japfa Scholarship with Blade and Vue. Turning designs into reusable components and helping front and back end shake hands over the API.', chips: ['Laravel Blade', 'Vue.js', 'Tailwind'] },
+  { date: 'Aug – Dec 2025', title: 'Front-End Developer (Intern) — By Decodes Media', text: 'Built the Bodaq Hyundai branding site with animations and reusable layouts, plus an AI product website in Next.js focused on speed and a scalable component setup.', chips: ['Laravel Blade', 'JavaScript', 'Next.js'] },
   { date: 'Jun 2022 – May 2023', title: 'Fullstack Engineer Intern — Azura Labs', text: 'Shipped production apps for healthcare and logistics with Node.js, TypeScript, and React, then rebuilt one in Go and Fiber for cleaner code and faster APIs.', chips: ['Node.js', 'TypeScript', 'React', 'Go'] },
-  { date: 'May – Aug 2023', title: 'Content Designer — PT Cipta Perkasa Usahatama', text: 'Produced up to ten visuals and a product video a day, keeping every campaign on brand. Also maintained a website on Vercel and AWS at Pentone.', chips: ['Content design', 'Video', 'Vercel', 'AWS'] },
-  { date: '2024 – 2025', title: 'Campus & Beyond', text: 'Secretary at the Electrical Engineering Student Association, design team member at the Polytechnic Computer Club, and MC for a national seminar. Proof that I can code and hold a microphone.', chips: ['Leadership', 'Design', 'Public speaking'] },
-  { label: 'EDUCATION', date: '2023 – Now · GPA 3.91/4.00', title: 'Politeknik Negeri Semarang — Informatics Engineering', text: 'Currently writing my thesis on repository analytics with Random Forest, Gradient Boosting, and K-Means.', chips: ['Python', 'scikit-learn', 'FastAPI'] },
+  { date: 'Mar – Jun 2023', title: 'Website Maintenance — Pentone', text: 'Deployed and maintained both front-end and back-end infrastructure, keeping the site running smoothly on Vercel and AWS EC2.', chips: ['Vercel', 'AWS EC2'] },
+  { date: 'May – Aug 2023', title: 'Social Media & Content Designer — PT Cipta Perkasa Usahatama', text: 'Produced up to ten visuals and a product video a day, keeping every campaign on brand, including promos for religious holidays and Independence Day.', chips: ['Content design', 'Video'] },
+  { date: 'May 2024 – May 2025', title: 'Campus & Beyond', text: 'Secretary at the Electrical Engineering Student Association, design team member at the Polytechnic Computer Club, and MC for a national seminar. Proof that I can code and hold a microphone.', chips: ['Leadership', 'Design', 'Public speaking'] },
+  { label: 'EDUCATION', date: 'Sep 2023 – Sep 2026 · GPA 3.90/4.00', title: 'Politeknik Negeri Semarang — Informatics Engineering', text: 'Graduated with a thesis on GitHub repository analytics using Random Forest, Gradient Boosting, and K-Means.', chips: ['Python', 'scikit-learn', 'FastAPI'] },
 ]
 
 export const projects: Project[] = [
-  { slug: 'gitpulse', title: 'GitPulse', year: '2026', description: 'Analytics platform that uses machine learning to measure GitHub repository performance and team collaboration.', stack: ['Python', 'FastAPI', 'scikit-learn', 'Next.js'], link: 'https://github.com/TODO' }, // TODO link + confirm stack
-  { slug: 'japfa-scholarship', title: 'JAPFA Scholarship', year: '2026', description: 'Scholarship platform with a dynamic application flow, built for a live client with Blade and Vue.', stack: ['Laravel', 'Blade', 'Vue.js', 'Tailwind'], link: null }, // TODO link or keep null
-  { slug: 'bodaq-hyundai', title: 'Bodaq Hyundai', year: '2025', description: 'Branding website with smooth animations and reusable components that give the brand a confident first impression.', stack: ['Laravel Blade', 'JavaScript'], link: null }, // TODO
-  { slug: 'ai-product-website', title: 'AI Product Website', year: '2025', description: 'Fast, modern product site with a scalable component architecture, tuned for performance.', stack: ['Next.js', 'React'], link: null }, // TODO
-  { slug: 'edufarmers', title: 'EduFarmers', year: '2026', description: 'Reusable component system and responsive UI for a live Laravel Blade web platform.', stack: ['Laravel Blade', 'Tailwind'], link: null }, // TODO
-  { slug: 'coastal-fire-alert', title: 'Coastal Fire Alert', year: '2025', description: 'Early fire warning for coastal areas: live camera plus heat and smoke detection on ESP32-CAM.', stack: ['Flutter', 'Firebase', 'ESP32-CAM'], link: 'https://github.com/TODO' }, // TODO
+  {
+    slug: 'fradara',
+    title: 'Fradara',
+    year: '2026',
+    description: 'Real-time fraud scoring for every expense and procurement transaction, so auditors catch what manual Excel checks never could.',
+    stack: ['Machine Learning', 'REST API', 'RBAC'],
+    link: 'https://fe-fraud-detection-platform.vercel.app/',
+  },
+  {
+    slug: 'gitpulse',
+    title: 'GitPulse',
+    year: '2026',
+    description: 'Connects to GitHub and uses machine learning to measure contributor productivity and repo health, based on real data instead of gut feeling.',
+    stack: ['Python', 'FastAPI', 'scikit-learn', 'Next.js'],
+    link: 'https://github.com/Yaps-Space',
+  },
+  {
+    slug: 'infratek',
+    title: 'Infratek',
+    year: '2026',
+    description: 'QR-based asset inventory for toll road infrastructure, with a Form Builder that lets admins customize data forms without writing code.',
+    stack: ['Next.js', 'Firebase'],
+    link: 'https://infratek-inventory.vercel.app/',
+  },
+  {
+    slug: 'japfa-scholarship',
+    title: 'JAPFA Scholarship',
+    year: '2026',
+    description: 'Scholarship platform with a dynamic application flow, built for a live client.',
+    stack: ['Laravel', 'Blade', 'Vue.js', 'Tailwind'],
+    link: null,
+  },
+  {
+    slug: 'edufarmers',
+    title: 'EduFarmers',
+    year: '2026',
+    description: 'Reusable component system and responsive UI for a live web platform.',
+    stack: ['Laravel Blade', 'Tailwind'],
+    link: null,
+  },
+  {
+    slug: 'bodaq-hyundai',
+    title: 'Hyundai Bodaq',
+    year: '2025',
+    description: 'Product catalog for decorative interior films, with live color and finish previews and side-by-side comparison.',
+    stack: ['Laravel Blade', 'JavaScript'],
+    link: 'https://bodaq.co.id/',
+  },
+  {
+    slug: 'coastal-fire-alert',
+    title: 'Coastal Fire Alert',
+    year: '2025',
+    description: 'Early fire warning for coastal areas: live camera plus heat and smoke detection on ESP32-CAM.',
+    stack: ['Flutter', 'Firebase', 'ESP32-CAM'],
+    link: null,
+  },
+  {
+    slug: 'hospital-intern',
+    title: 'Hospital Intern',
+    year: '2025',
+    description: 'Internship management for a real hospital: rotation schedules, attendance, grading, and auto-generated certificates across three user roles.',
+    stack: ['Laravel', 'MySQL'],
+    link: 'https://github.com/vinsensiuskurniaputra/hospital_intern',
+  },
 ]
 
 // Draws a faint hairline at the floor (top of the letters) while tuning. Set to false to hide.
@@ -96,6 +155,6 @@ export const PRELOADER_ONCE_PER_SESSION = true // ?preloader=1 forces it; dev sh
 
 // Tools tile (About): flat list, `featured` = the 5 main tools (bigger, darker chips)
 export const toolChips: { t: string; featured: boolean }[] = [
-  { t: 'Vue.js', featured: true }, { t: 'React', featured: true }, { t: 'Next.js', featured: true }, { t: 'Laravel', featured: true }, { t: 'Tailwind', featured: true },
-  { t: 'Node.js', featured: false }, { t: 'Flutter', featured: false }, { t: 'Firebase', featured: false }, { t: 'Figma', featured: false }, { t: 'ML & FastAPI', featured: false },
+  { t: 'Laravel', featured: true }, { t: 'Vue.js', featured: true }, { t: 'Next.js', featured: true }, { t: 'React', featured: true }, { t: 'Tailwind', featured: true },
+  { t: 'Node.js', featured: false }, { t: 'Flutter', featured: false }, { t: 'Firebase', featured: false }, { t: 'Figma', featured: false }, { t: 'Python & FastAPI', featured: false }, { t: 'Docker', featured: false },
 ]
