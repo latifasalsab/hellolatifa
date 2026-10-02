@@ -95,7 +95,7 @@ export const projects: Project[] = [
     year: '2026',
     description: 'Scholarship platform with a dynamic application flow, built for a live client.',
     stack: ['Laravel', 'Blade', 'Vue.js', 'Tailwind'],
-    link: null,
+    link: 'https://beasiswajapfa.co.id/',
   },
   {
     slug: 'edufarmers',
@@ -103,7 +103,7 @@ export const projects: Project[] = [
     year: '2026',
     description: 'Reusable component system and responsive UI for a live web platform.',
     stack: ['Laravel Blade', 'Tailwind'],
-    link: null,
+    link: 'https://edufarmers.org/',
   },
   {
     slug: 'bodaq-hyundai',
@@ -127,7 +127,7 @@ export const projects: Project[] = [
     year: '2025',
     description: 'Internship management for a real hospital: rotation schedules, attendance, grading, and auto-generated certificates across three user roles.',
     stack: ['Laravel', 'MySQL'],
-    link: 'https://github.com/vinsensiuskurniaputra/hospital_intern',
+    link: null,
   },
 ]
 
